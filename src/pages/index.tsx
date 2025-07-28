@@ -15,9 +15,11 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroTitle}>
           <img 
-            src="/img/chanterelle.png" 
+            src="img/chanterelle.png" 
             alt="Chanterelle Logo" 
             className={styles.heroLogo}
+            loading="eager"
+            decoding="async"
           />
           <span className={clsx('chanterelle', styles.heroTitleBig)}>
             {siteConfig.title}
@@ -28,7 +30,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Get Started
+            Get Started Ok
           </Link>
         </div>
       </div>

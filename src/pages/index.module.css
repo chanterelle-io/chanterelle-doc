@@ -35,6 +35,10 @@
 .heroLogo {
   height: 4rem;
   width: auto;
+  display: block;
+  object-fit: contain;
+  /* Prevent layout shift while loading */
+  min-width: 4rem;
 }
 
 /* Custom styling for the hero title */
