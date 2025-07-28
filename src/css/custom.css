@@ -1,0 +1,69 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Import Google Fonts */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap'); */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #d4a633;
+  --ifm-color-primary-dark: #c0952e;
+  --ifm-color-primary-darker: #b48b2c;
+  --ifm-color-primary-darkest: #957324;
+  --ifm-color-primary-light: #ddb138;
+  --ifm-color-primary-lighter: #e1b53b;
+  --ifm-color-primary-lightest: #edc548;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  
+  /* Font customization */
+  /* Body text - clean sans-serif for readability */
+  /* --ifm-font-family-base: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif; */
+  /* Code blocks and inline code - monospace with ligatures */
+  /* --ifm-font-family-monospace: 'Fira Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace; */
+  /* Headings - use monospace for all headings */
+  /* --ifm-heading-font-family: 'Fira Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace; */
+  
+  /* Font sizes and spacing */
+  /* --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.6;
+  --ifm-font-weight-base: 400;
+  --ifm-font-weight-bold: 600; */
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #edc548;
+  --ifm-color-primary-dark: #ddb138;
+  --ifm-color-primary-darker: #d4a633;
+  --ifm-color-primary-darkest: #c0952e;
+  --ifm-color-primary-light: #f0cc5c;
+  --ifm-color-primary-lighter: #f2d166;
+  --ifm-color-primary-lightest: #f6dc84;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom CSS for Chanterelle */
+
+/* Navbar title styling */
+.navbar__title {
+  font-family: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  /* font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em; */
+}
+
+/* Homepage hero title styling */
+/* .hero__title {
+  font-family: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+} */
+
+.chanterelle {
+  font-family: 'Fira Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-weight: 600;
+}
