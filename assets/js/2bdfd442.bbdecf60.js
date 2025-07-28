@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkchanterelle_doc=self.webpackChunkchanterelle_doc||[]).push([[5195],{9736:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/chanterelle-doc/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
