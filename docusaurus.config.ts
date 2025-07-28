@@ -15,15 +15,17 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://chanterelle.io',
+  url: 'https://chanterelle-io.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'chanterelle-io', // Usually your GitHub org/user name.
-  projectName: 'chanterelle', // Usually your repo name.
+  organizationName: 'chanterelle-io.github.io', // Usually your GitHub org/user name.
+  projectName: 'chanterelle-doc', // Usually your repo name.
+  // deploymentBranch: 'gh-pages', // The branch that GitHub pages will deploy from.
+  trailingSlash: false, // Whether to add a trailing slash to URLs
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -84,7 +86,7 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/download', label: 'Download', position: 'left'},
+        // {to: '/download', label: 'Download', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/chanterelle-io/chanterelle',
