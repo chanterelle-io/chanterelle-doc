@@ -24,7 +24,7 @@ const config: Config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'chanterelle-io', // Usually your GitHub org/user name.
   projectName: 'chanterelle-doc', // Usually your repo name.
-  deploymentBranch: 'main', // The branch that GitHub pages will deploy from.
+  // deploymentBranch: 'gh-pages', // The branch that GitHub pages will deploy from.
   trailingSlash: false, // Whether to add a trailing slash to URLs
 
   onBrokenLinks: 'throw',
