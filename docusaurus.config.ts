@@ -18,11 +18,11 @@ const config: Config = {
   url: 'https://chanterelle-io.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/chanterelle-doc/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'chanterelle-io.github.io', // Usually your GitHub org/user name.
+  organizationName: 'chanterelle-io', // Usually your GitHub org/user name.
   projectName: 'chanterelle-doc', // Usually your repo name.
   // deploymentBranch: 'gh-pages', // The branch that GitHub pages will deploy from.
   trailingSlash: false, // Whether to add a trailing slash to URLs
