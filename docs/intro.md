@@ -2,46 +2,49 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## What is Chanterelle?
 
-## Getting Started
+**Chanterelle** is a lightweight desktop application designed for **data scientists** and **ML engineers** to easily **test, present and share models and findings** in a structured and interactive way.
+It allows model developers to:
+- 📄 **Describe models** using structured metadata
+- 📊 **Show insights and findings** through an optional report page
+- 🧠 **Interact with the model** via a user-defined input/output interface
 
-Get started by **creating a new site**.
+## Why use Chanterelle?
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- **Local, simple, and secure** – No need to deploy to the cloud, especially before production.
+- **Share models easily** – Present models, results, and visual findings with minimal setup
+- **Structure your work** – Organize metadata, reports, and interfaces in a clear, reusable format
+- **Collaborate like code** – Project files are JSON + Python, so teams can version them in Git, push to shared repos, and review changes just like with source code
+- **Integrate with your workflow** – Fully compatible with existing Python environments and model pipelines
 
-### What you'll need
+## How It Works
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Chanterelle is built around three core components, all configurable by the model developer:
+### 1. **Model Metadata**
 
-## Generate a new site
+Specify inputs, outputs, and UI settings using a JSON configuration.
 
-Generate a new Docusaurus site using the **classic template**.
+➡️ [See metadata structure](./references/model_meta.md)
+### 2. **Model Functions**
 
-The classic template will automatically be added to your project after you run the command:
+Write your core Python functions to:
+- Load and prepare your model
+- Transform inputs
+- Run predictions 
+- Return outputs and, optionally, generate dynamic visualizations or plots
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+These functions allow Chanterelle to serve as a lightweight local UI for testing and showcasing your model. Preparing these functions also makes it easier to deploy models elsewhere (e.g. AWS SageMaker).
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+➡️ [See model functions](#)
+### 3. **Insights & Findings (Optional)**
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+You can include a dedicated page for:
+- Model results, KPIs, and benchmark comparisons
+- Visual findings like feature importance plots, confusion matrices, partial dependence plots or cohort analyses.
 
-## Start your site
+All content is defined via a JSON structure linked to static or dynamic visual outputs.  
 
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+➡️ [See findings structure](#)

@@ -23,7 +23,7 @@
 }
 
 /* Hero title container with logo */
-.heroTitle {
+.heroTitleDiv {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +50,7 @@
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
-  .heroTitle {
+  .heroTitleDiv {
     flex-direction: column;
     gap: 0.5rem;
   }
@@ -66,6 +66,6 @@
   font-weight: 600;
 }
 
-.heroTitleBig {
+.heroTitle {
   font-size: 3rem; /* Adjust as needed */
 }

@@ -13,7 +13,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <div className={styles.heroTitle}>
+        <div className={styles.heroTitleDiv}>
           <img 
             src="img/chanterelle.png" 
             alt="Chanterelle Logo" 
@@ -21,16 +21,16 @@ function HomepageHeader() {
             loading="eager"
             decoding="async"
           />
-          <span className={clsx('chanterelle', styles.heroTitleBig)}>
+          <span className={clsx('chanterelle', styles.heroTitle)}>
             {siteConfig.title}
           </span>
         </div>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle chanterelle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Get Started Ok
+            Get Started
           </Link>
         </div>
       </div>
@@ -42,8 +42,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="The Chanterelle documentation site.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
