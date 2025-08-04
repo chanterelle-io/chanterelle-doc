@@ -38,7 +38,7 @@ Write your core Python functions to:
 
 These functions allow Chanterelle to serve as a lightweight local UI for testing and showcasing your model. Preparing these functions also makes it easier to deploy models elsewhere (e.g. AWS SageMaker).
 
-➡️ [See model functions](#)
+➡️ [See model functions](./references/handler_io.md)
 ### 3. **Insights & Findings (Optional)**
 
 You can include a dedicated page for:
@@ -47,4 +47,4 @@ You can include a dedicated page for:
 
 All content is defined via a JSON structure linked to static or dynamic visual outputs.  
 
-➡️ [See findings structure](#)
+➡️ [See findings structure](./references/model_findings.md)

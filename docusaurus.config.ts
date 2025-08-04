@@ -88,7 +88,7 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        // {to: '/download', label: 'Download', position: 'left'},
+        {to: '/docs/install.md', label: 'Download', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/chanterelle-io/chanterelle',

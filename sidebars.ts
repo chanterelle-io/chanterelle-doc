@@ -34,11 +34,13 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'References',
       items: [
+        'references/folder_structure',
         'references/model_meta',
         'references/model_findings',
         'references/handler_io',
       ],
     },
+    'install'
   ],
 };
 
