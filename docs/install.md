@@ -1,4 +1,8 @@
 # Installation
+
+## Requirements
+- **Python 3.8+**: Chanterelle requires Python 3.8 or higher.
+
 ## 🔽 Download Chanterelle
 
 You can download the latest version of Chanterelle from the GitHub Releases page:

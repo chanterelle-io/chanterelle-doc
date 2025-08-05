@@ -89,7 +89,7 @@ output = model.predict(input_data)
 - `original_data` - The original request data for reference.
 - `resources` (optional) - Additional resources loaded by `init_resources_fn`.
 **Output**
-- the output is a (JSON-like) list of sections following the same structure as [The model findings JSON file](./references/model_findings.md).
+- the output is a (JSON-like) list of sections following the same structure as [The model findings JSON file](./model_findings.md).
 
 **Implementation**:
 - Output predictions and calculate derived metrics.

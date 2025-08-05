@@ -23,7 +23,8 @@
   "model_id": "my-first-model",
   "model_name": "My First Model",
   "model_version": "1.0.0",
-  "description": "A simple example model for demonstration",
+  "description_short": "Short description of the model that is displayed in the Models catalog",
+  "description": "Long description of the model that is displayed in the Model Data page",
   "inputs": [
     {
       "name": "input_value",
@@ -97,6 +98,7 @@ The model information section contains metadata that identifies your model and p
 | `model_id` | string | Unique identifier for your model |
 | `model_name` | string | Human-readable name displayed in the UI |
 | `model_version` | string | Version string (e.g., "1.0.0") |
+| `description_short` | string | Brief one-line description |
 | `description` | string | Detailed description of the model |
 | `inputs` | array | List of input parameters (see [Inputs](#inputs)) |
 | `outputs` | array | List of output parameters (see [Outputs](#outputs)) |
@@ -105,7 +107,6 @@ The model information section contains metadata that identifies your model and p
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `description_short` | string | Brief one-line description |
 | `links` | array | External links or documentation |
 | `tags` | object | Key-value pairs for categorization (see [Tags](#tags)) |
 | `input_presets` | array | Predefined input combinations (see [Input Presets](#input-presets)) |
@@ -430,7 +431,7 @@ Enhance the user experience with input presets and logical groupings that make c
 
 ### Input Presets
 
-Presets provide predefined parameter combinations for common use cases, helping users get started quickly with proven configurations.
+Presets provide predefined parameter combinations for common use cases, helping users get started quickly with proven configurations. You can also use presets to create predefined examples that allow users to quickly try your model. 
 
 #### Input Preset Fields Reference
 
