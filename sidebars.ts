@@ -30,6 +30,7 @@ const sidebars: SidebarsConfig = {
    */
   tutorialSidebar: [
     'intro',
+    'install',
     {
       type: 'category',
       label: 'References',
@@ -39,8 +40,7 @@ const sidebars: SidebarsConfig = {
         'references/model_findings',
         'references/handler_io',
       ],
-    },
-    'install'
+    }
   ],
 };
 

@@ -2,6 +2,8 @@ import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import ChanterelleFileToInterface from '@site/static/img/chanterelle_file_to_interface3.svg';
+
 
 type FeatureItem = {
   title: string;
@@ -12,7 +14,8 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Model Interface',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/chanterelle_file_to_interface7.svg').default,
+    // Svg: ChanterelleFileToInterface,
     description: (
       <>
         Define your inputs and outputs for your desired
@@ -22,7 +25,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Model Functions',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/chanterelle_python_to_execute2.svg').default,
     description: (
       <>
         Define your functions to load your model, transform your input,
@@ -33,7 +36,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Findings and Model Insights',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/chanterelle_file_to_findings.svg').default,
     description: (
       <>
         You can optionally define your findings and model insights in JSON and include dropdowned sections, charts and images.
@@ -60,6 +63,8 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
+        {/* <img src="/img/chanterelle_file_to_interface.png" alt="banner" /> */}
+        {/* <ChanterelleFileToInterface /> */}
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
