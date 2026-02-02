@@ -46,6 +46,9 @@ export default function Home(): ReactNode {
       description="The Chanterelle documentation site.">
       <HomepageHeader />
       <main>
+        <div className="container" style={{textAlign: 'center', padding: '2rem 0'}}>
+          <iframe width="80%" height="500" src="https://www.youtube.com/embed/coK2rDEzb8o?si=J1d5UP9HjvkTwdXk" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+        </div>
         <HomepageFeatures />
       </main>
     </Layout>
