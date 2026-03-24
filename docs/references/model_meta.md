@@ -112,6 +112,7 @@ The model information section contains metadata that identifies your model and p
 | `input_presets` | array | Predefined input combinations (see [Input Presets](#input-presets)) |
 | `input_groupings` | array | UI grouping for input parameters (see [Input Groupings](#input-groupings)) |
 | `python_environment` | object | Python environment configuration (see [Python Environment](#python-environment)) |
+| `allow_feedback` | boolean | Enable thumbs-up/down feedback on predictions (see [Feedback](#feedback)) |
 
 ## Inputs
 
@@ -152,15 +153,19 @@ Input parameters define the interface between users and your model. Each input c
 
 ### Input Types
 
-Chanterelle supports five core input types, each with specific UI controls and validation:
+Chanterelle supports nine input types, each with specific UI controls and validation:
 
 | Type | UI Control | Description | Example Values |
 |------|------------|-------------|----------------|
 | `float` | Number input with decimals | Floating-point numbers | `3.14`, `0.5`, `-2.7` |
 | `int` | Number input (whole numbers) | Integer values | `1`, `42`, `-10` |
-| `string` | Text input | Text values | `"hello world"`, `"model_v2"` |
+| `string` | Text input | Single-line text values | `"hello world"`, `"model_v2"` |
 | `category` | Dropdown/Select | Selection from predefined options | See [category constraints](#category-constraints) |
 | `boolean` | Checkbox/Toggle | True/false values | `true`, `false` |
+| `textarea` | Multi-line text area | Longer text input | Free-form text, paragraphs |
+| `file` | File picker | Upload files from disk | Images, CSVs, documents |
+| `button` | Button | Trigger an action | N/A |
+| `yes_no` | Yes/No toggle | Binary choice with custom labels | Yes/No, Accept/Reject |
 
 ### Type-Specific Examples
 
@@ -305,6 +310,76 @@ String constraints are **optional** rules that control string input format and v
   "default": "checkpoints/best_model.pth",
   "constraints": {
     "regex": "^[a-zA-Z0-9_/-]+\\.(pth|pt|h5|ckpt)$",
+  }
+}
+```
+
+#### Textarea Constraints
+
+Textarea inputs support these optional constraints:
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `rows` | number | Number of visible rows | `5` |
+| `placeholder` | string | Placeholder text | `"Enter your text here..."` |
+
+```json
+{
+  "name": "notes",
+  "label": "Additional Notes",
+  "type": "textarea",
+  "description": "Free-form notes or context for the model",
+  "constraints": {
+    "rows": 4,
+    "placeholder": "Enter any additional context..."
+  }
+}
+```
+
+#### File Constraints
+
+File inputs support these optional constraints:
+
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `extensions` | array | Allowed file extensions | `[".csv", ".json"]` |
+| `multiple` | boolean | Allow multiple file selection | `true` |
+
+```json
+{
+  "name": "dataset",
+  "label": "Upload Dataset",
+  "type": "file",
+  "description": "CSV file containing input data",
+  "constraints": {
+    "extensions": [".csv", ".tsv"],
+    "multiple": false
+  }
+}
+```
+
+#### Yes/No Constraints
+
+Yes/No inputs support custom labels and values:
+
+| Field | Type | Description | Default |
+|-------|------|-------------|---------|
+| `yes_label` | string | Label for the "yes" option | `"Yes"` |
+| `no_label` | string | Label for the "no" option | `"No"` |
+| `yes_value` | any | Value sent when "yes" is selected | `true` |
+| `no_value` | any | Value sent when "no" is selected | `false` |
+
+```json
+{
+  "name": "approve",
+  "label": "Approve Result?",
+  "type": "yes_no",
+  "description": "Approve or reject the model output",
+  "constraints": {
+    "yes_label": "Approve",
+    "no_label": "Reject",
+    "yes_value": "approved",
+    "no_value": "rejected"
   }
 }
 ```
@@ -619,6 +694,18 @@ Configure the Python execution environment for your model.
 | `venv` | Python virtual environment | `path`, `requirements` |
 | `conda` | Conda environment | `name`, `channels`, `requirements`, `pip_requirements` |
 | `virtualenv` | Legacy virtualenv | `path`, `requirements` |
+
+## Feedback
+
+Set `allow_feedback` to `true` in your metadata to enable a feedback widget on model predictions. Users can give thumbs-up/down ratings with optional comments. Feedback is stored in a `feedback.jsonl` file in the project directory.
+
+```json
+{
+  "allow_feedback": true
+}
+```
+
+Feedback entries contain a timestamp, rating, and optional comment. The feedback is also forwarded to the running Python process if it's still active.
 
 ## Links and Documentation
 

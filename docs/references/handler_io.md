@@ -1,7 +1,11 @@
-# handler_io.py
+# handler_io.py (Model Projects)
 
 ## Overview
-The `handler_io.py` file is designed to implement handler functions for machine learning models. These functions are used to load the model, process input data, make predictions, and format outputs. The file is structured to ensure modularity and reusability.
+The `handler_io.py` file implements handler functions for machine learning model projects. These functions are used to load the model, process input data, make predictions, and format outputs. The file is structured to ensure modularity and reusability.
+
+:::info
+This page documents `handler_io.py` for **model projects**. For interactive projects, see the [Interactive Projects reference](./interactive.md#handler_iopy) which uses a different handler interface.
+:::
 
 ## File Structure
 The file contains the following key functions:

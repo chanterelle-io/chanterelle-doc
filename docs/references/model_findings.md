@@ -56,16 +56,34 @@ A `model_findings.json` file follows this JSON schema:
 ```
 ## Insight Items and Visualization Types
 Insight items represent text, individual visualizations or data points. Supported types include:
-Supported visualization types include:
 
-- `bar_chart`
-- `line_chart`
-- `table`
-- `text`
-- `bullet_list`
-- `image`
+- `bar_chart` — Bar charts
+- `line_chart` — Line charts
+- `scatter_plot` — Scatter plots
+- `table` — Data tables
+- `text` — Rich text with paragraphs, bullets, and styling
+- `image` — Images from file paths or URLs
+- `markdown` — Full Markdown rendering (GFM, code blocks, tables)
+- `plotly` — Interactive Plotly.js charts
+- `html` — Embedded HTML content (inline or from file)
+- `error` — Styled error messages
 
-Each type has specific fields and configurations. Below are improved examples for each type, with optional fields explicitly marked:
+### Common Item Properties
+
+All insight items share these base properties:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | ✅ | The visualization type |
+| `id` | string | ❌ | Unique identifier |
+| `title` | string | ❌ | Display title |
+| `description` | string | ❌ | Help text or description |
+| `comment` | string | ❌ | Additional commentary |
+| `collapsible` | boolean | ❌ | Whether the item can be collapsed |
+| `collapsed` | boolean | ❌ | Whether the item starts collapsed |
+| `full_width` | boolean | ❌ | Override `items_per_row` and take full width |
+
+Each type has specific fields and configurations. Below are examples for each type, with optional fields explicitly marked:
 
 ### Bar Chart
 
@@ -162,28 +180,59 @@ Each type has specific fields and configurations. Below are improved examples fo
 
 ### Image
 
+Images can be loaded from relative file paths (relative to the project directory), absolute paths, `file://` URIs, or HTTP URLs.
+
 ```json
 {
   "type": "image",
   "id": "image1",
   "title": "Example Image",
-  "description": "An image example", // Optional
-  "caption": "This is an example image", // Optional
-  "comment": "This image illustrates the concept", // Optional
-  "url_filename": "example.png"
+  "description": "An image example",
+  "caption": "This is an example image",
+  "file_path": "graphs/example.png"
 }
 ```
 
 ### Text
 
+The `text` type supports rich text content with paragraphs, bullet lists (including nested bullets), and styling options.
+
+**Simple text:**
 ```json
 {
   "type": "text",
   "id": "text1",
   "title": "Example Text",
-  "description": "A text example", // Optional
-  "comment": "This text provides additional information", // Optional
-  "text": "This is a sample text insight."
+  "content": [
+    { "type": "paragraph", "text": "This is a paragraph of text." },
+    { "type": "paragraph", "text": "This is another paragraph." }
+  ]
+}
+```
+
+**With bullet lists and styling:**
+```json
+{
+  "type": "text",
+  "id": "text2",
+  "title": "Styled Text",
+  "content": [
+    { "type": "paragraph", "text": "Key findings:", "style": { "bold": true } },
+    {
+      "type": "bullet_list",
+      "items": [
+        { "text": "First point" },
+        { "text": "Second point", "style": { "color": "green" } },
+        {
+          "text": "Third point with sub-items",
+          "items": [
+            { "text": "Sub-item A" },
+            { "text": "Sub-item B" }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -194,22 +243,144 @@ Each type has specific fields and configurations. Below are improved examples fo
   "type": "error",
   "id": "error1",
   "title": "Example Error",
-  "description": "An error example", // Optional
-  "comment": "This error occurred during processing", // Optional
   "error": "File not found"
+}
+```
+
+### Scatter Plot
+
+```json
+{
+  "type": "scatter_plot",
+  "id": "scatter1",
+  "title": "Feature Scatter Plot",
+  "data": {
+    "points": [
+      { "x": 1.2, "y": 3.4 },
+      { "x": 2.5, "y": 1.8 },
+      { "x": 3.1, "y": 4.2 }
+    ],
+    "axis": {
+      "x": { "label": "Feature A" },
+      "y": { "label": "Feature B" }
+    }
+  }
+}
+```
+
+### Plotly
+
+Render interactive [Plotly.js](https://plotly.com/javascript/) charts. Data can be provided inline, as a stringified JSON blob, or loaded from a file.
+
+**Inline data:**
+```json
+{
+  "type": "plotly",
+  "id": "plotly1",
+  "title": "Interactive Scatter",
+  "data": [
+    {
+      "x": [1, 2, 3],
+      "y": [2, 6, 3],
+      "type": "scatter",
+      "mode": "lines+markers",
+      "marker": { "color": "red" }
+    }
+  ],
+  "layout": { "title": "My Plotly Chart" }
+}
+```
+
+**From file (Plotly JSON export):**
+```json
+{
+  "type": "plotly",
+  "id": "plotly2",
+  "title": "Chart from File",
+  "file_path": "graphs/my_chart.json"
+}
+```
+
+**Using `figure_json` (stringified Plotly figure):**
+```json
+{
+  "type": "plotly",
+  "id": "plotly3",
+  "title": "Plotly Figure",
+  "figure_json": "{\"data\": [...], \"layout\": {...}}"
+}
+```
+
+### Markdown
+
+Render Markdown content with GFM (GitHub Flavored Markdown) support including tables, code blocks with syntax highlighting, and more. Content can be inline or loaded from a `.md` file.
+
+**Inline markdown:**
+```json
+{
+  "type": "markdown",
+  "id": "md1",
+  "title": "Inline Markdown",
+  "content": "# Heading\n\n- Bullet 1\n- Bullet 2\n\n| Col A | Col B |\n|:------|------:|\n| hi    |     1 |\n\n```python\ndef hello():\n    print('world')\n```"
+}
+```
+
+**Markdown from file:**
+```json
+{
+  "type": "markdown",
+  "id": "md2",
+  "title": "From File",
+  "file_path": "docs/analysis.md"
+}
+```
+
+### HTML
+
+Embed HTML content either inline or from a file. HTML is rendered in a sandboxed iframe.
+
+**Inline HTML:**
+```json
+{
+  "type": "html",
+  "id": "html1",
+  "title": "Inline HTML",
+  "content": "<h1>Hello</h1><p>Custom HTML content</p>"
+}
+```
+
+**HTML from file (e.g., Plotly HTML export):**
+```json
+{
+  "type": "html",
+  "id": "html2",
+  "title": "Interactive Visualization",
+  "file_path": "graphs/visualization.html"
 }
 ```
 
 
 ## Sections
 
-Sections group related insights and can include:
+Sections group related insights. They support nesting, grid layout, collapsible behavior, dropdown filtering, and colored headers.
 
-- `id`: Unique identifier
-- `title`: Display name
-- `description`: Optional help text
-- `items`: Array of insight items
-- `dropdown`: (Optional) configuration for dropdown menus
+### Section Properties
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | `"section"` | ✅ | Must be `"section"` |
+| `id` | string | ❌ | Unique identifier |
+| `title` | string | ✅ | Display name (appears in Table of Contents) |
+| `description` | string | ❌ | Help text |
+| `items` | array | ✅* | Array of insight items or nested sections |
+| `items_per_row` | number | ❌ | Number of items to display per row (default: `1`) |
+| `color` | string | ❌ | Color for section header |
+| `collapsible` | boolean | ❌ | Whether the section can be collapsed |
+| `collapsed` | boolean | ❌ | Whether the section starts collapsed |
+| `dropdown` | object | ❌ | Dropdown configuration (see [Dropdown Configuration](#dropdown-configuration)) |
+| `subsections` | object | ❌ | Subsection content keyed by dropdown option ID |
+
+*Items are required unless `dropdown` + `subsections` are used instead.
 
 ### Example Section
 
@@ -355,27 +526,26 @@ Subsections provide additional structure within dropdown options. Each subsectio
 }
 ```
 
-## Decomposing and referencing other json files
-You can decompose the `model_meta.json` file into smaller, more manageable files. This can also be useful if you have json generated programmatically or if you want to keep your project organized.
-You can reference other JSON files that include sections or insight items. This allows you to maintain a clean structure and reuse common configurations across different models.
-If you want to include content from other JSON files, you can use the `$ref` keyword to reference the external file and the specific section you want to include. For example:
+## Decomposing and Referencing Other JSON Files
 
-For sections:
+You can decompose your findings file into smaller, more manageable files. This is useful if you have JSON generated programmatically or if you want to keep your project organized.
 
+Use the `$href` keyword to reference an external JSON file. The referenced file's content will be inlined at that position. References are resolved recursively.
+
+**Referencing a section:**
 ```json
 {
   "model_id": "example-model",
   "version": "1.0.0",
   "content": [
     {
-      "$ref": "path/to/other_file.json#/section1"
+      "$href": "path/to/section.json"
     }
   ]
 }
 ```
 
-For insight items:
-
+**Referencing an insight item:**
 ```json
 {
   "model_id": "example-model",
@@ -387,10 +557,12 @@ For insight items:
       "title": "Example Section",
       "items": [
         {
-          "$ref": "path/to/other_file.json#/items/item1"
+          "$href": "graphs/chart_data.json"
         }
       ]
     }
   ]
 }
 ```
+
+File paths are resolved relative to the project directory.

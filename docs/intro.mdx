@@ -7,10 +7,11 @@ sidebar_position: 1
 ## What is Chanterelle?
 
 **Chanterelle** is a lightweight desktop application designed for **data scientists** and **ML engineers** to easily **test, present and share models and findings** in a structured and interactive way.
-It allows model developers to:
-- 📄 **Describe models** using structured metadata
-- 📊 **Show insights and findings** through an optional report page
-- 🧠 **Interact with the model** via a user-defined input/output interface
+
+Chanterelle supports three types of projects:
+- 🧠 **Model Projects** – Define inputs, outputs, and Python functions to test and showcase ML models through a generated UI
+- 📊 **Analytics Projects** – Create rich, static insight dashboards from JSON-defined visualizations
+- 💬 **Interactive Projects** – Build multi-turn conversational agents with dynamic forms and streaming output
 
 <iframe width="100%" height="500" src="https://www.youtube.com/embed/coK2rDEzb8o?si=J1d5UP9HjvkTwdXk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -21,18 +22,24 @@ It allows model developers to:
 - **Structure your work** – Organize metadata, reports, and interfaces in a clear, reusable format
 - **Collaborate like code** – Project files are JSON + Python, so teams can version them in Git, push to shared repos, and review changes just like with source code
 - **Integrate with your workflow** – Fully compatible with existing Python environments and model pipelines
+- **Rich visualizations** – Tables, charts (line, bar, scatter), Plotly, Markdown, images, HTML embeds, and more
+- **Feedback system** – Collect thumbs-up/down feedback with comments on model predictions
 
 ## How It Works
 
-Chanterelle is built around three core components, all configurable by the model developer:
-### 1. **Model Metadata**
+### Model Projects
 
-Specify inputs, outputs, and UI settings using a JSON configuration.
+Model projects are built around three core components, all configurable by the model developer:
+
+#### 1. **Model Metadata**
+
+Specify inputs, outputs, and UI settings using a JSON configuration (`model_meta.json`).
 
 ➡️ [See metadata structure](./references/model_meta.md)
-### 2. **Model Functions**
 
-Write your core Python functions to:
+#### 2. **Model Functions**
+
+Write your core Python functions in `handler_io.py` to:
 - Load and prepare your model
 - Transform inputs
 - Run predictions 
@@ -41,12 +48,36 @@ Write your core Python functions to:
 These functions allow Chanterelle to serve as a lightweight local UI for testing and showcasing your model. Preparing these functions also makes it easier to deploy models elsewhere (e.g. AWS SageMaker).
 
 ➡️ [See model functions](./references/handler_io.md)
-### 3. **Insights & Findings (Optional)**
 
-You can include a dedicated page for:
+#### 3. **Insights & Findings (Optional)**
+
+You can include a dedicated insights page (`model_findings.json`) for:
 - Model results, KPIs, and benchmark comparisons
-- Visual findings like feature importance plots, confusion matrices, partial dependence plots or cohort analyses.
+- Visual findings like feature importance plots, confusion matrices, partial dependence plots or cohort analyses
+- Rich content including Plotly charts, Markdown, images, tables, and more
 
 All content is defined via a JSON structure linked to static or dynamic visual outputs.  
 
 ➡️ [See findings structure](./references/model_findings.md)
+
+### Analytics Projects
+
+Analytics projects let you build standalone insight dashboards without any Python code. Just create an `analytics.json` file with sections and visualizations, and Chanterelle renders them as a rich report with a table of contents.
+
+➡️ [See analytics reference](./references/analytics.md)
+
+### Interactive Projects
+
+Interactive projects enable multi-turn conversational sessions with a Python agent. The agent can present dynamic forms that change each turn, stream outputs, and maintain conversation state.
+
+➡️ [See interactive reference](./references/interactive.md)
+
+---
+
+:::tip[Using an AI Coding Assistant?]
+
+Chanterelle includes a built-in skill that teaches AI coding assistants (GitHub Copilot, Cursor, Windsurf, and others) how to generate valid `model_meta.json`, `handler_io.py`, `analytics.json`, and `interactive.json` files. Describe your project in natural language and get correctly structured files — ready to open in Chanterelle.
+
+➡️ [Learn more](./ai-assisted-setup.md)
+
+:::

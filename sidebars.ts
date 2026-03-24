@@ -33,14 +33,17 @@ const sidebars: SidebarsConfig = {
     'install',
     {
       type: 'category',
-      label: 'References',
+      label: 'Project References',
       items: [
         'references/folder_structure',
         'references/model_meta',
         'references/model_findings',
         'references/handler_io',
+        'references/analytics',
+        'references/interactive',
       ],
-    }
+    },
+    'ai-assisted-setup',
   ],
 };
 
