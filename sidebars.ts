@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     'intro',
     'install',
+    'quickstart',
     {
       type: 'category',
       label: 'Project References',
@@ -44,6 +45,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
     'ai-assisted-setup',
+    'uninstall',
   ],
 };
 

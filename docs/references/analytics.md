@@ -74,6 +74,84 @@ Sections support all features including:
 
 ➡️ See the [Model Findings reference](./model_findings.md) for full documentation of all visualization types and section options.
 
+## Common Patterns
+
+### Chart and table side by side
+
+Use `items_per_row: 2` on a section to place items in a two-column grid:
+
+```json
+{
+  "type": "section",
+  "id": "overview",
+  "title": "Overview",
+  "items_per_row": 2,
+  "items": [
+    {
+      "type": "bar_chart",
+      "id": "sales_chart",
+      "title": "Sales by Region",
+      "data": { "bars": [{"label": "North", "value": 120}, {"label": "South", "value": 95}], "axis": {"x": {"label": "Region"}, "y": {"label": "Sales"}} }
+    },
+    {
+      "type": "table",
+      "id": "sales_table",
+      "title": "Sales Table",
+      "data": { "headers": ["Region", "Sales"], "rows": [["North", 120], ["South", 95]] }
+    }
+  ]
+}
+```
+
+### Load chart data from an external JSON file
+
+Keep `analytics.json` lean and load heavy chart data from separate files using `$href`:
+
+```json
+{
+  "type": "section",
+  "id": "charts",
+  "title": "Charts",
+  "items": [
+    { "$href": "graphs/sales_chart.json" },
+    { "$href": "graphs/trend_chart.json" }
+  ]
+}
+```
+
+Each referenced file should contain a single insight item object (e.g., a `bar_chart`).
+
+### Collapsible appendix section
+
+```json
+{
+  "type": "section",
+  "id": "appendix",
+  "title": "Appendix",
+  "collapsible": true,
+  "collapsed": true,
+  "items": []
+}
+```
+
+### Dropdown filter between sub-dashboards
+
+```json
+{
+  "type": "section",
+  "id": "by_region",
+  "title": "By Region",
+  "dropdown": {
+    "id": "region_selector",
+    "label": "Select Region"
+  },
+  "subsections": [
+    { "id": "north", "label": "North", "items": [] },
+    { "id": "south", "label": "South", "items": [] }
+  ]
+}
+```
+
 ## Complete Example
 
 ```json

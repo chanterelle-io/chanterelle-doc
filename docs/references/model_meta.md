@@ -699,6 +699,78 @@ Configure the Python execution environment for your model.
 
 Set `allow_feedback` to `true` in your metadata to enable a feedback widget on model predictions. Users can give thumbs-up/down ratings with optional comments. Feedback is stored in a `feedback.jsonl` file in the project directory.
 
+## Common Patterns
+
+### Dropdown with fixed options
+
+```json
+{
+  "name": "classifier",
+  "label": "Classifier",
+  "type": "category",
+  "description": "The classification algorithm to use",
+  "default": "random_forest",
+  "constraints": {
+    "options": ["random_forest", "svm", "xgboost"]
+  }
+}
+```
+
+### One-click sample presets
+
+Let users fill the form with a single click using `input_presets`:
+
+```json
+"input_presets": [
+  {
+    "input_preset": "examples",
+    "label": "Sample Inputs",
+    "description": "Pre-filled examples to try the model",
+    "affects": ["sepal_length", "sepal_width", "petal_length", "petal_width"],
+    "presets": [
+      {
+        "name": "Setosa example",
+        "values": { "sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2 }
+      },
+      {
+        "name": "Virginica example",
+        "values": { "sepal_length": 6.7, "sepal_width": 3.0, "petal_length": 5.2, "petal_width": 2.3 }
+      }
+    ]
+  }
+]
+```
+
+### Use a virtual environment
+
+```json
+"python_environment": {
+  "type": "venv",
+  "path": "./venv"
+}
+```
+
+### Group related inputs visually
+
+```json
+"input_groupings": [
+  {
+    "grouping": "sepal",
+    "description": "Sepal measurements",
+    "inputs": ["sepal_length", "sepal_width"]
+  },
+  {
+    "grouping": "petal",
+    "description": "Petal measurements",
+    "inputs": ["petal_length", "petal_width"]
+  }
+]
+```
+
+### Collect user feedback on predictions
+
+Add `"allow_feedback": true` to the top level of your `model_meta.json`. A thumbs-up/down widget will appear after each prediction, and responses are saved to `feedback.jsonl` in the project folder.
+
 ```json
 {
   "allow_feedback": true

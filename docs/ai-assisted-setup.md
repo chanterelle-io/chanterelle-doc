@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 ---
 
 # AI-Assisted Setup
@@ -8,11 +8,48 @@ Chanterelle ships with a built-in **AI skill** that teaches AI coding assistants
 
 This means you can describe what you want in natural language, and your AI assistant will generate valid, well-structured project files for you.
 
+## Quick Start
+
+**1. Add the skill to your workspace**
+
+Download the skill folder from the Chanterelle GitHub repository:
+
+👉 [chanterelle-project skill on GitHub](https://github.com/chanterelle-io/chanterelle/tree/main/.github/skills/chanterelle-project)
+
+Unzip or clone it so the structure in your workspace is:
+
+```
+your-project/
+  .github/
+    skills/
+      chanterelle-project/
+        SKILL.md
+        references/
+```
+
+**2. Open your project folder in your AI-enabled editor**
+
+Any editor that reads workspace instruction files will automatically pick up the skill.
+
+**3. Ask the assistant to create a project**
+
+Example prompts:
+
+> "Create a Chanterelle model project for an iris classification model with 4 numeric inputs and a category output"
+
+> "Scaffold an interactive project with a conversational SQL agent"
+
+> "Build an analytics dashboard with a bar chart and a summary table"
+
+The assistant will generate correctly structured files, ready to open in Chanterelle.
+
+---
+
 ## How It Works
 
-The Chanterelle repository includes a [`chanterelle-project`](https://github.com/chanterelle-io/chanterelle/tree/main/.github/skills/chanterelle-project) skill folder under `.github/skills/`. It contains:
+The skill folder contains:
 
-- **`SKILL.md`** — the main entry point that AI assistants read, with the scaffolding procedure and key constraints
+- **`SKILL.md`** — the main entry point with the scaffolding procedure and key constraints
 - **`references/model-project.md`** — full `model_meta.json` schema and `handler_io.py` function signatures
 - **`references/interactive-project.md`** — `interactive.json` schema and interactive `handler_io.py` pattern
 - **`references/analytics-project.md`** — `analytics.json` schema
@@ -34,22 +71,6 @@ Any AI coding assistant that reads project-level instruction files:
 - **Cursor**
 - **Windsurf**
 - Other AI-enabled editors and IDE plugins
-
-## Quick Start
-
-1. [**Download the skill folder**](/chanterelle-project-skill.zip) and unzip it into your workspace so the structure is `.github/skills/chanterelle-project/`
-2. Open your project folder in your editor with your AI assistant enabled
-3. Ask the assistant to create a project:
-
-**Example prompts:**
-
-> "Create a Chanterelle model project for an iris classification model with 4 numeric inputs and a category output"
-
-> "Scaffold an interactive project with a conversational SQL agent"
-
-> "Build an analytics dashboard with a bar chart and a summary table"
-
-The assistant will generate the correct files with valid schemas, ready to open in Chanterelle.
 
 ## What It Covers
 

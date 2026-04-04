@@ -109,6 +109,84 @@ my_interactive_project/
 
 The `python_environment` field uses the same format as model projects (`system`, `venv`, `conda`, `virtualenv`).
 
+## Common Patterns
+
+### Maintain conversation history
+
+Module-level variables persist as long as the process is alive:
+
+```python
+history = []
+
+def initialize():
+    history.clear()
+    return {
+        "outputs": [{"type": "section", "title": "Ready", "items": [...]}],
+        "next_inputs": [{"name": "message", "label": "Message", "type": "string"}]
+    }
+
+def on_input(data):
+    history.append(data.get("message", ""))
+    # history is available on every subsequent turn
+    return {
+        "outputs": [...],
+        "next_inputs": [{"name": "message", "label": "Message", "type": "string"}]
+    }
+```
+
+### Show a different form on the first turn
+
+```python
+_first_turn = True
+
+def on_input(data):
+    global _first_turn
+    if _first_turn:
+        _first_turn = False
+        name = data.get("username", "")
+        # respond to the first-turn form ...
+```
+
+### End the conversation
+
+Return an empty `next_inputs` list to indicate no further input is expected:
+
+```python
+return {
+    "outputs": [{"type": "section", "title": "Done", "items": [...]}],
+    "next_inputs": []
+}
+```
+
+### Conditionally include a chart in the response
+
+```python
+def on_input(data):
+    message = data.get("message", "")
+    show_chart = data.get("show_chart", False)
+
+    items = [
+        {"type": "text", "id": "reply", "content": [{"type": "paragraph", "text": f"You said: {message}"}]}
+    ]
+
+    if show_chart:
+        items.append({
+            "type": "plotly",
+            "id": "chart",
+            "title": "Character Stats",
+            "data": [{"x": ["Chars", "Words"], "y": [len(message), len(message.split())], "type": "bar"}],
+            "layout": {"height": 300}
+        })
+
+    return {
+        "outputs": [{"type": "section", "title": "Reply", "items": items}],
+        "next_inputs": [
+            {"name": "message", "label": "Next message", "type": "string"},
+            {"name": "show_chart", "label": "Show chart", "type": "boolean", "default": show_chart}
+        ]
+    }
+```
+
 ## handler_io.py
 
 Interactive projects use a different handler interface than model projects. Instead of the `model_fn`/`input_fn`/`predict_fn`/`output_fn` pattern, interactive handlers use two functions:
